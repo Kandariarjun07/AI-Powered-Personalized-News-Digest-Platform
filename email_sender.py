@@ -95,6 +95,7 @@ def send_email(html_content):
         subject = f"MorningByte – {datetime.datetime.now().strftime('%Y-%m-%d')}"
         message = MIMEText(html_content, 'html')
         message['to'] = recipient
+        message['from'] = "Arjun Singh Kandari <arjunkandari15@gmail.com>"
         message['subject'] = subject
         
         # Encode for Gmail API
