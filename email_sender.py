@@ -57,10 +57,12 @@ def load_credentials():
                 flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
                 # Try standard port 8080, fallback just in case
                 try:
-                    creds = flow.run_local_server(port=8080)
+                    # We use prompt='consent' to force Google to give us a 'refresh_token'
+                    # This is CRITICAL for the GitHub Action to work forever, not just for 1 hour.
+                    creds = flow.run_local_server(port=8080, prompt='consent', access_type='offline')
                 except OSError:
                     print("⚠️ Port 8080 busy, trying random port...")
-                    creds = flow.run_local_server(port=0)
+                    creds = flow.run_local_server(port=0, prompt='consent', access_type='offline')
             else:
                 print("❌ 'credentials.json' is also missing. Cannot authenticate.")
                 return None
