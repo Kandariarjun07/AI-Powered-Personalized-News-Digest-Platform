@@ -2,8 +2,8 @@ name: Daily Tech News Digest
 
 on:
   schedule:
-    # Runs at 09:45 UTC every day (Which is 3:15 PM IST)
-    - cron: '45 9 * * *'
+    # Runs at 09:30 UTC (3:00 PM IST) to account for GitHub's potential 10-15min delay
+    - cron: '30 9 * * *'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
