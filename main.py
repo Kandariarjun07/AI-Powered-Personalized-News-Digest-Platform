@@ -17,7 +17,8 @@ def run_pipeline():
     
     # Step 2: Fetch News
     # Go to the internet and grab the latest RSS feeds.
-    articles = rss_fetcher.fetch_rss_feeds(max_articles=45)
+    # We fetch a larger pool (up to 200) so the AI has enough specific content to choose from.
+    articles = rss_fetcher.fetch_rss_feeds(max_articles=200)
     
     if not articles:
         print("⚠️ No articles found today. Aborting pipeline.")

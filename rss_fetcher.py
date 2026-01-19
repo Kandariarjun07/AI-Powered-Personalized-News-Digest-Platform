@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def fetch_rss_feeds(max_articles=45):
+def fetch_rss_feeds(max_articles=200):
     """
     Browses the RSS feeds listed in the .env file and collects the latest news.
     Stops once we reach 'max_articles' to keep things fast.

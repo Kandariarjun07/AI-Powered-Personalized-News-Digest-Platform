@@ -34,13 +34,19 @@ def generate_newsletter(articles):
     ### Design Requirements:
     - Use a clean, table-based HTML layout (compatible with Gmail/Outlook).
     - Styling: Inline CSS, Sans-serif fonts, professional "Newspaper" look.
-    - Header: A bold masthead titled 'Daily Tech Digest'.
-    - Layout: Use horizontal separators between stories.
+    - Header: A bold masthead titled 'Daily Tech & Geek Culture Digest'.
+    - Layout: Use horizontal separators between sections.
 
     ### Content Rules:
-    1. Select only the TOP 10-15 most important stories from the provided data.
-    2. Group them by category if possible (e.g., 'AI & Softare', 'Hardware', 'Market').
-    3. For each story:
+    Select exactly **20 articles** from the provided data, categorized strictly as follows:
+    1. **Anime & Manga** (5 articles)
+    2. **Artificial Intelligence (AI)** (5 articles)
+    3. **Gaming** (5 articles)
+    4. **Coding & Development** (5 articles)
+
+    If there are not enough articles in a category to meet the quota, select the most relevant remaining tech news to fill the gap, but prioritize the specific categories requested.
+
+    For each story:
        - Display the **Title** as a bold link.
        - If a valid 'Image' URL exists (not 'NONE'), show it (Max width: 600px, rounded corners).
        - Write a 2-sentence summary in a neutral, journalistic tone.
@@ -65,7 +71,7 @@ def generate_newsletter(articles):
         
         # We use Gemini 3.0 Flash for its speed and context handling
         response = client.models.generate_content(
-            model="gemini-3.0-flash-preview", 
+            model="gemini-3-flash-preview", 
             contents=[
                 {"role": "user", "parts": [{"text": system_instruction}]},
                 {"role": "user", "parts": [{"text": user_prompt}]}
