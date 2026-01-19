@@ -92,7 +92,7 @@ def send_email(html_content):
         service = build('gmail', 'v1', credentials=creds)
         
         # Create the email message
-        subject = f"Daily Tech Digest – {datetime.datetime.now().strftime('%Y-%m-%d')}"
+        subject = f"MorningByte – {datetime.datetime.now().strftime('%Y-%m-%d')}"
         message = MIMEText(html_content, 'html')
         message['to'] = recipient
         message['subject'] = subject

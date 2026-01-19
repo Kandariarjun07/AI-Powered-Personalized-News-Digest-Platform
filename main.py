@@ -8,7 +8,7 @@ def run_pipeline():
     The main orchestrator function.
     Runs the news processing steps in order.
     """
-    print("\n🚀 Starting Daily Newsletter Pipeline...")
+    print("\n🚀 Starting MorningByte Pipeline...")
     print("---------------------------------------")
 
     # Step 1: Clean the Database

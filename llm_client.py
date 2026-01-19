@@ -29,12 +29,12 @@ def generate_newsletter(articles):
     system_instruction = "You are a professional technology newspaper editor."
     
     user_prompt = f"""
-    Write a 'Daily Tech Digest' HTML email newsletter based on the stories below.
+    Write a 'MorningByte' HTML email newsletter based on the stories below.
 
     ### Design Requirements:
     - Use a clean, table-based HTML layout (compatible with Gmail/Outlook).
     - Styling: Inline CSS, Sans-serif fonts, professional "Newspaper" look.
-    - Header: A bold masthead titled 'Daily Tech & Geek Culture Digest'.
+    - Header: A bold masthead titled 'MorningByte'.
     - Layout: Use horizontal separators between sections.
 
     ### Content Rules:

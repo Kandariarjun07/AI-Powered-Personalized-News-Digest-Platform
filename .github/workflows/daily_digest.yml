@@ -1,4 +1,4 @@
-name: Daily Tech News Digest
+name: MorningByte Daily Digest
 
 on:
   schedule:

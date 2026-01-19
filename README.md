@@ -1,4 +1,4 @@
-# 🗞️ Daily Tech & Geek Culture Digest
+# 🗞️ MorningByte
 
 This is a personal automation project that delivers a curated daily newsletter covering **technology, AI, gaming, anime, and developer culture** — straight to my inbox every morning.
 
