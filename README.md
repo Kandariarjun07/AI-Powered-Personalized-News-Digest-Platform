@@ -1,66 +1,110 @@
-# Daily Tech & Geek Culture Digest 
+# 🗞️ Daily Tech & Geek Culture Digest
 
-This is a personal automation project that curates a daily newsletter of tech, AI, gaming, and anime news. It runs completely in the cloud using **GitHub Actions**, fetches news from RSS feeds, summarizes them using **Google Gemini AI**, and sends a beautiful HTML email straight to my inbox every morning.
+This is a personal automation project that delivers a curated daily newsletter covering **technology, AI, gaming, anime, and developer culture** — straight to my inbox every morning.
 
-## How It Works
+The entire system runs autonomously in the cloud using **GitHub Actions**. It collects news from multiple RSS feeds, uses **Google Gemini AI** to select and summarize the most important stories, and sends a beautifully formatted, newspaper-style HTML email via Gmail.
 
-1.  **Fetch:** Every morning at 7:50 AM IST, the script wakes up and scans RSS feeds (TechCrunch, AnimeNewsNetwork, etc.) for the latest 200 articles.
-2.  **Filter & Sort:** It saves them to a MongoDB database to keep track of history.
-3.  **AI Magic:** It sends the article list to Google's Gemini Flash model. The AI picks the top 5 stories for **Artificial Intelligence**, **Gaming**, **Anime**, and **Coding**, then writes a crisp 2-sentence summary for each.
-4.  **Deliver:** The script logs into Gmail (via OAuth) and sends a formatted 'Newspaper-style' email.
-
-## Project Structure
-
-- main.py: The boss. Orchestrates the whole flow step-by-step.
-- 
-ss_fetcher.py: The gatherer. Goes out to the internet and collects raw news.
-- llm_client.py: The writer. Talks to Google Gemini to generate the content.
-- email_sender.py: The postman. Handles the tricky Gmail OAuth stuff to send the email.
-- db.py: The memory. Saves data to MongoDB.
-- .github/workflows/daily_digest.yml: The alarm clock. Tells GitHub when to run the code.
+The goal was simple: build a high-signal, zero-effort daily news experience tailored to my interests.
 
 ---
 
-## Local Setup (If you want to run it on your laptop)
+## ✨ How It Works
 
-You generally don't need to run this locally since it runs on GitHub, but if you want to test changes:
+1. **Fetch**
+   Every morning at **7:50 AM IST**, the workflow wakes up and scans multiple RSS feeds, collecting 100+ fresh articles.
 
-1.  **Install Requirements:**
-    `ash
-    pip install -r requirements.txt
-    `
+2. **Store & Track**
+   All articles are stored in **MongoDB** to maintain history and avoid duplicates.
 
-2.  **Set up Environment Variables (.env):**
-    Create a .env file and add your keys:
-    `ini
-    MONGO_URI=mongodb+srv://...
-    GOOGLE_API_KEY=AIzaSy...
-    EMAIL_RECIPIENT=your_email@gmail.com
-    RSS_FEED_URLS=http://feed1.com, http://feed2.com
-    `
+3. **AI Curation**
+   The article list is sent to **Google Gemini Flash**, which:
 
-3.  **Authentication:**
-    You need a credentials.json from Google Cloud Console. Run the script once, and it will open a browser to login. It saves a 	oken.json file which keeps you logged in.
+   * Selects the top 5 stories in each category:
 
-4.  **Run:**
-    `ash
-    python main.py
-    `
+     * Artificial Intelligence
+     * Gaming
+     * Anime
+     * Coding
+   * Writes crisp, two-sentence summaries for each story.
+
+4. **Deliver**
+   The system authenticates with Gmail using OAuth and sends a clean, newspaper-style HTML newsletter directly to my inbox.
+
+No manual work. No dashboards. Just a fresh, relevant newsletter every morning.
 
 ---
 
-## Deployment (GitHub Actions)
+## 🧱 Project Structure
 
-This repo is configured to run automatically. You just need to set the secrets in **Settings > Secrets and variables > Actions**:
+* **main.py** – The orchestrator. Controls the entire pipeline end-to-end
+* **rss_fetcher.py** – The collector. Fetches and parses RSS feeds
+* **llm_client.py** – The writer. Communicates with Google Gemini to generate summaries
+* **email_sender.py** – The postman. Handles Gmail OAuth and email delivery
+* **db.py** – The memory. Manages MongoDB operations
+* **.github/workflows/daily_digest.yml** – The alarm clock. Schedules the daily run using GitHub Actions
 
-- MONGO_URI: Your database connection.
-- GOOGLE_API_KEY: Your Gemini API Key.
-- EMAIL_RECIPIENT: Where to send the email.
-- RSS_FEED_URLS: Comma-separated list of RSS feeds.
-- GMAIL_TOKEN_JSON: **Crucial.** Paste the full content of your local 	oken.json here. This is how the cloud logs in as you.
+---
 
-## Tech Stack
-- **Language:** Python 3.12
-- **AI Model:** Google Gemini 2.0 Flash
-- **Database:** MongoDB Atlas
-- **Automation:** GitHub Actions (Cron Job)
+## 💻 Local Setup (Optional)
+
+You normally don’t need to run this locally since everything runs on GitHub Actions, but for testing or development:
+
+### 1. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Environment variables
+
+Create a `.env` file:
+
+```ini
+MONGO_URI=mongodb+srv://...
+GOOGLE_API_KEY=AIzaSy...
+EMAIL_RECIPIENT=your_email@gmail.com
+RSS_FEED_URLS=http://feed1.com,http://feed2.com
+```
+
+### 3. Gmail Authentication
+
+* Download `credentials.json` from Google Cloud Console
+* Run the script once
+* A browser window will open for login
+* This generates `token.json`, which keeps you authenticated
+
+### 4. Run
+
+```bash
+python main.py
+```
+
+---
+
+## ☁️ Deployment (GitHub Actions)
+
+The project is fully automated via GitHub Actions.
+
+Configure the following secrets:
+
+* `MONGO_URI` – MongoDB connection string
+* `GOOGLE_API_KEY` – Gemini API key
+* `EMAIL_RECIPIENT` – Destination email address
+* `RSS_FEED_URLS` – Comma-separated RSS URLs
+* `GMAIL_TOKEN_JSON` – Full contents of your local `token.json` file
+
+This allows the cloud workflow to securely authenticate and send emails on your behalf.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Language:** Python 3.12
+* **AI Model:** Google Gemini 3.0 Flash
+* **Database:** MongoDB Atlas
+* **Automation:** GitHub Actions (Cron scheduling)
+* **Email:** Gmail API (OAuth)
+
+---
+
+⭐ If you like this project, feel free to star the repo!
